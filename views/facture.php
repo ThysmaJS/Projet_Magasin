@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,19 +14,20 @@
 <div class="invoice">
     <div class="invoice-header">
         <h1>Facture</h1>
-        <i class="fa-solid fa-box"></i>
+        <i class="fa-solid fa-box" title="cacapipi"></i>
         <i class="fa-solid fa-shop"></i>
         <i class="fa-solid fa-truck"></i>
         <div class="invoice-date">Date de commande : 04/11/2023</div>
     </div>
     <div class="invoice-items">
-        <?php foreach ($articles as $article) : ?>
-            <div class="item">
-                <div class="item-name"><?php echo $article['name']; ?></div>
-                <div class="item-quantity">1</div> <!-- Vous devez ajuster la quantité ici -->
-                <div class="item-amount"><?php echo $article['prix_unitaire']; ?></div>
-            </div>
-        <?php endforeach; ?>
+    <?php foreach ($articles as $article) :  ?>
+        <div class="item">
+            <div class="item-name"><?php echo $article->name; ?></div>
+            <div class="item-quantity">Quantité : <?php echo $article->quantity; ?></div>
+            <div class="item-amount">Prix unitaire : $<?php echo $article->price; ?></div>
+            <div class="item-total">Montant total : $<?php echo $article->price * $article->quantity; ?></div>
+        </div>
+    <?php endforeach; ?>
     </div>
     <div class="invoice-billing-address">
         <h3>Adresse de facturation :</h3>
