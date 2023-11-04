@@ -18,48 +18,57 @@
                     <div class="col-6">
                         <h3 class="mb-3">Adresse de facturation :</h3>
                         <address>
-                            <div class="mb-2">Adresse : <?php echo $adresse->num; ?> rue <?php echo $adresse->rue; ?></div>
-                            <div>Commune : <?php echo $adresse->CP; ?> <?php echo $adresse->commune; ?></div>
+                            <div class="mb-2">Adresse : <?= $adresse->num; ?> rue <?= $adresse->rue; ?></div>
+                            <div>Commune : <?= $adresse->CP; ?> <?= $adresse->commune; ?></div>
                         </address>
                     </div>
                     <div class="col-6 text-end">
-                        <p>Date de commande : <?php echo date('d/m/Y'); ?></p>
+                        <p>Date de commande : <?= date('d/m/Y'); ?></p>
                     </div>
                 </div>
             </div>
             <div class="invoice-items">
                 <?php foreach ($articles as $article) : ?>
                     <div class="item border p-3 mb-3">
-                        <h4><?php echo $article->name; ?></h4>
-                        <p>Quantité : <?php echo $article->quantity; ?></p>
-                        <p>Prix unitaire : $<?php echo $article->price; ?></p>
+                        <h4><?= $article->name; ?></h4>
+                        <p>Quantité : <?= $article->quantity; ?></p>
+                        <p>Prix unitaire : <?= $article->price; ?> €</p>
                         <p>Mode de livraison :
                             <?php
+                            $deliveryIcon = '';
                             if ($article->deliveryMode === 'shop') {
-                                echo '<i class="fas fa-shopping-cart"></i>';
+                                $deliveryIcon = '<i class="fas fa-shopping-cart"></i>';
                             } elseif ($article->deliveryMode === 'house') {
-                                echo '<i class="fas fa-home"></i>';
+                                $deliveryIcon = '<i class="fas fa-home"></i>';
                             } elseif ($article->deliveryMode === 'box') {
-                                echo '<i class="fas fa-box"></i>';
+                                $deliveryIcon = '<i class="fas fa-box" data-bs-toggle="tooltip" data-bs-placement="top" title="17 rue des Lila, 13080 Aix-En-Provence"></i>';
                             }
+                            echo $deliveryIcon;
                             ?>
                         </p>
-                        <p>Montant total : $<?php echo $article->price * $article->quantity; ?></p>
+                        <p>Montant total : <?= $article->price * $article->quantity; ?> €
+                            <i class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="<?= number_format($article->price, 2) . ' x ' . $article->quantity . ' = ' . number_format($article->price * $article->quantity, 2) . ' €'; ?>"></i>
+                        </p>
                     </div>
                 <?php endforeach; ?>
             </div>
             <div class="invoice-total text-end">
-                <p>Montant total de la commande : $<?php
-                    $totalAmount = 0;
-                    foreach ($articles as $article) {
-                        $totalAmount += $article->price * $article->quantity;
-                    }
-                    echo number_format($totalAmount, 2);
-                    ?>
+                <?php
+                $totalAmount = 0;
+                foreach ($articles as $article) {
+                    $totalAmount += $article->price * $article->quantity;
+                }
+                ?>
+                <p data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Somme des montants totaux de chaque article">Montant total de la commande :
+                    <?= number_format($totalAmount, 2); ?> €
                 </p>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
