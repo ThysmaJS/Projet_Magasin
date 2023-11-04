@@ -1,10 +1,14 @@
 <?php
-include 'Model/ArticleModel.php'; // Assurez-vous que le chemin du fichier est correct
+include 'Model/ArticleModel.php';
+include 'Model/AdresseModel.php';
 
 class FactureController {
     public function afficherFacture() {
         $articleManager = new ArticleManager();
         $articles = $articleManager->getArticles();
+        $AdresseManager = new AdresseManager();
+        $adresse = $AdresseManager->getAdresse();
+
         require 'views/facture.php';
     }
 }
