@@ -15,6 +15,9 @@
     <div class="invoice">
         <div class="invoice-header">
             <h1>Facture</h1>
+            <i class="fa-solid fa-box"></i>
+            <i class="fa-solid fa-shop"></i>
+            <i class="fa-solid fa-truck"></i>
             <div class="invoice-date">Date de commande : 04/11/2023</div>
         </div>
         <div class="invoice-items">
