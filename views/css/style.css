@@ -38,3 +38,8 @@ body {
     text-align: right;
     font-weight: bold;
 }
+.address-line {
+    display: inline-block;
+    margin-right: 10px; /* Ajustez la marge pour l'espacement */
+}
+

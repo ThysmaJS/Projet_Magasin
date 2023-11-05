@@ -1,9 +1,14 @@
 <?php
+include 'Model/ArticleModel.php';
+include 'Model/AdresseModel.php';
 
-// FactureController.php
 class FactureController {
     public function afficherFacture() {
-        // Charger la page HTML de la facture
+        $articleManager = new ArticleManager();
+        $articles = $articleManager->getArticles();
+        $AdresseManager = new AdresseManager();
+        $adresse = $AdresseManager->getAdresse();
+
         require 'views/facture.php';
     }
 }
