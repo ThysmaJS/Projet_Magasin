@@ -10,6 +10,7 @@
 </head>
 
 <body>
+<?php include 'Model/DatabaseModel.php'; ?>
     <div class="container">
         <div class="invoice">
             <div class="invoice-header">
@@ -32,7 +33,6 @@
                     <div class="item border p-3 mb-3">
                         <h4><?= $article->name; ?></h4>
                         <p>Quantité : <?= $article->quantity; ?></p>
-                        <p>Prix unitaire : <?= $article->price; ?> €</p>
                         <p>Mode de livraison :
                             <?php
                             $deliveryIcon = '';
@@ -46,7 +46,7 @@
                             echo $deliveryIcon;
                             ?>
                         </p>
-                        <p>Montant total : <?= $article->price * $article->quantity; ?> €
+                        <p>Prix : <?= $article->price * $article->quantity; ?> €
                             <i class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
                                 title="<?= number_format($article->price, 2) . ' x ' . $article->quantity . ' = ' . number_format($article->price * $article->quantity, 2) . ' €'; ?>"></i>
                         </p>
